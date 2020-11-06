@@ -12,17 +12,20 @@ Clone the source for this app
 ```
 Open the cloned folder in Visual Studio Code, and install the Azure Functions extension.
 
-#### Use VS Code to create a new Function App and deploy.
+#### Use VS Code to create a new Function App
 Sign in to Azure, choose your subscription and create a new function
+
 ![](docs/new-func-in-azure.png)
 
 Choose a unique name, runtime (Node 10), and Region. The extension will log progress in the Output window of VS Code.
 
 #### Deploy to Azure
 From the Azure Functions extension, select "Deploy to Function App"
+
 ![](docs/deploy.png)
 
 From the VS Code Output window for Azure Functions, copy the app URL (to configure the GitHub App in the following steps)
+
 ![](docs/app-url.png)
 
 ## Create and Register App on GitHub
@@ -30,6 +33,7 @@ From the VS Code Output window for Azure Functions, copy the app URL (to configu
 To install this app, create a new GitHub App registration in your organization:
 
 In Organization Settings->Developer Apps->GitHub Apps:
+
 ![](docs/new-app.png)
 
 
@@ -42,7 +46,7 @@ In Organization Settings->Developer Apps->GitHub Apps:
 - Copy or note the App ID at the top of the App Configuration
 
 ### Configure Azure Function
-- create or edit local.settings.json in the source directory
+Back to the source in VS Code, create or edit `local.settings.json` in the source directory
 ```JSON
 {
   "IsEncrypted": false,
@@ -54,12 +58,17 @@ In Organization Settings->Developer Apps->GitHub Apps:
   }
 }
 ```
-You will need to replace any new lines with new lines characters `\n` to save this secret in the app settings/environment variables. Do not check in this file to source.
+You will need to replace any new lines with newline characters `\n` to save this secret as a string in the app settings/environment variables.
+
+:warning: **Do not check in this file to the source code!**
 
 The VS Code Azure Functions Extension can upload these local settings to a deployed app.
 
 Right click on the function app in the Azure Functions extension, and select Upload Local Settings
+
 ![](docs/upload-settings.png)
+
+:partying_face: Hooray! Your app is configured and deployed.
 
 ## Development
 
