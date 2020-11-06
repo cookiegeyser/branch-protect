@@ -74,7 +74,7 @@ module.exports = async function (context, req) {
                 owner: req_owner,
                 repo: req_repo,
                 title: "Branch protection applied",
-                body: `The main branch in this repository has been protected automatically by the [branch-protect app](https://github.com/cookiegeyser/branch-protect).\n- Pushing directly to the main branch is not allowed.\n- A pull request with at least 1 approval is required to merge changes.\n- Changes made after an approval require re-approval.\n\n[View or Edit Branch protection rules](https://github.com/${req_owner}/${req_repo}/settings/branches)`
+                body: `@richarda The main branch in this repository has been protected automatically by the [branch-protect app](https://github.com/cookiegeyser/branch-protect).\n- Pushing directly to the main branch is not allowed.\n- A pull request with at least 1 approval is required to merge changes.\n- Changes made after an approval require re-approval.\n\n[View or Edit Branch protection rules](https://github.com/${req_owner}/${req_repo}/settings/branches)`
             });
     }
 }
