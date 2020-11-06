@@ -6,6 +6,9 @@
     "start": "func start",
     "test": "echo \"No tests yet...\""
   },
-  "dependencies": {},
+  "dependencies": {
+    "@octokit/auth-app": "^2.10.1",
+    "@octokit/request": "^5.4.10"
+  },
   "devDependencies": {}
 }
