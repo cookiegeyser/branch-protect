@@ -52,7 +52,7 @@ module.exports = async function (context, req) {
             });
         }
 
-        const result2 = await requestWithAuth("PUT /repos/:owner/:repo/branches/:branch/protection", {
+        const protection_result = await requestWithAuth("PUT /repos/:owner/:repo/branches/:branch/protection", {
             owner: req_owner,
             repo: req_repo,
             branch: 'main',
@@ -61,12 +61,20 @@ module.exports = async function (context, req) {
             required_pull_request_reviews: {
                 dismissal_restrictions: {},
                 dismiss_stale_reviews: true,
-                require_code_owner_reviews: true,
+                require_code_owner_reviews: false,
             },
             restrictions: null,
 
         });
 
         context.log(`Branch Protection applied for ${req_owner}/${req_repo}`)
+
+        context.log("Create Issue with protection details")
+            const issue_result = await requestWithAuth("POST /repos/{owner}/{repo}/issues", {
+                owner: req_owner,
+                repo: req_repo,
+                title: "Branch protection applied",
+                body: `The main branch in this repository has been protected automatically by the [branch-protect app](https://github.com/cookiegeyser/branch-protect).\n- Pushing directly the main branch is not allowed.\n- A pull request with at least 1 approval is required to merge changes.\n- Changes made after an approval require re-approval.\n\n[View or Edit Branch protection rules](https://github.com/${req_owner}/${req_repo}/settings/branches)`
+            });
     }
 }
