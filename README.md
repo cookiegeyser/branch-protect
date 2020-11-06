@@ -83,7 +83,7 @@ This app targets deployment to Azure Functions. If you want to make changes to t
 
 This app uses libraries from [GitHub Octokit](https://github.com/octokit) to interact with the GitHub API
 - [octokit/auth-app](https://github.com/octokit/auth-app.js) for authentication
-- [@octokit/request](https://github.com/octokit/request.js) to make the api requests
+- [octokit/request](https://github.com/octokit/request.js) to make the api requests
 
 See the [GitHub API docs](https://docs.github.com/en/free-pro-team@latest/rest) for more details
  
