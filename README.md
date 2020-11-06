@@ -44,6 +44,11 @@ In Organization Settings->Developer Apps->GitHub Apps:
 - Activate the webhook, provide the app url from the deployment above, and leave SSL verification enabled
 - Generate and save a private key as a .pem file (needed to finish configuring your Azure Function App)
 - Copy or note the App ID at the top of the App Configuration
+- Configure the GitHub App "Permissions and Events" settings:
+  - "Read and Write" Administration
+  - "Read" Contents
+  - "Read and Write" Issues
+- Subscribe to "Repository" Events
 
 ### Configure Azure Function
 Back to the source in VS Code, create or edit `local.settings.json` in the source directory
@@ -72,10 +77,16 @@ Right click on the function app in the Azure Functions extension, and select Upl
 
 ## Development
 
-local.settings.json
+If you haven't created a local.settings.json, see above.
 
-"@octokit/auth-app":
-"@octokit/request"
+This app targets deployment to Azure Functions. If you want to make changes to the source, you can follow the instructions above to re-deploy or deploy to a staging app location. To run locally, use Azure Functions Core tools to start the function on port 80 `func start -p 80` and a service like [ngrok](https://ngrok.com/) to test the webhook coming from the GitHub App.
+
+This app uses libraries from [GitHub Octokit](https://github.com/octokit) to interact with the GitHub API
+- [octokit/auth-app](https://github.com/octokit/auth-app.js) for authentication
+- [@octokit/request](https://github.com/octokit/request.js) to make the api requests
+
+See the [GitHub API docs](https://docs.github.com/en/free-pro-team@latest/rest) for more details
+ 
 
 We could secure this further with a webhook secret
 https://docs.microsoft.com/en-us/learn/modules/monitor-github-events-with-a-function-triggered-by-a-webhook/9-exercise-secure-webhook-payloads-with-secret
